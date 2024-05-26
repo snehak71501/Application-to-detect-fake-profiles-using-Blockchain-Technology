@@ -1,0 +1,59 @@
+// SPDX-License-Identifier: MIT
+// Solidity program  
+// to store  
+// User Details 
+pragma solidity ^0.6.8; 
+  
+// Creating a Smart Contract 
+contract StructDemo { 
+  
+   // Structure of user 
+   struct User { 
+       
+       // State variables 
+       int userId; 
+       string username; 
+       string phoneNumber; 
+       string aadhar; 
+   } 
+   
+   User[] users; 
+  
+   // Function to add  
+   // user details 
+   function addUser( 
+     int userId, 
+     string memory username,  
+     string memory phoneNumber,  
+     string memory aadhar 
+   ) public { 
+       User memory u = User(userId, username, phoneNumber, aadhar); 
+       users.push(u); 
+   } 
+  
+  // Function to get 
+  // details of user 
+   function getUser( 
+     int userId 
+   ) public view returns( 
+     string memory,  
+     string memory,  
+     string memory
+   ) { 
+       for(uint i = 0; i < users.length; i++) { 
+           User memory u = users[i]; 
+           
+           // Looks for a matching  
+           // user id 
+           if(u.userId == userId) { 
+                  return(u.username, u.phoneNumber, u.aadhar); 
+           } 
+       } 
+       
+     // If provided user  
+     // id is not present 
+     // it returns Not  
+     // Found 
+     return("Not Found", "Not Found", "Not Found"); 
+   } 
+}
